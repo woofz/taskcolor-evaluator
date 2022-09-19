@@ -86,4 +86,30 @@ public class EvaluatorTest {
         assertThat(workflow.lastEntry().getValue()).isEqualTo(TaskColor.YELLOW);
     }
 
+    @Test
+    public void givenPreviousOptionalTask_whenEvaluate_thenSetTaskColorGreen() {
+        final Task task1 = new Task(TaskState.PENDING, TaskType.OPTIONAL, 1L);
+        final Task task2 = new Task(TaskState.PENDING, TaskType.MANDATORY, 2L);
+        wf.getTasks().add(task1);
+        wf.getTasks().add(task2);
+
+        TreeMap<Long, TaskColor> workflow = sut.evaluate(wf.getTasks());
+
+        assertThat(workflow.lastEntry().getValue()).isEqualTo(TaskColor.GREEN);
+    }
+
+    @Test
+    public void givenTwoPreviousOptionalOrGreenTasks_whenEvaluate_thenTaskColoCouldBeGreen() {
+        final Task task1 = new Task(TaskState.COMPLETE, TaskType.MANDATORY, 1L);
+        final Task task2 = new Task(TaskState.PENDING, TaskType.MANDATORY, 2L);
+        final Task task3 = new Task(TaskState.PENDING, TaskType.MANDATORY, 3L);
+
+        wf.getTasks().add(task1);
+        wf.getTasks().add(task2);
+        wf.getTasks().add(task3);
+
+        TreeMap<Long, TaskColor> workflow = sut.evaluate(wf.getTasks());
+        System.out.println(workflow);
+        assertThat(workflow.lastEntry().getValue()).isEqualTo(TaskColor.GREEN);
+    }
 }

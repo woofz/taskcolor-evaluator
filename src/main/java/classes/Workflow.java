@@ -1,20 +1,21 @@
 package classes;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Workflow {
 
 
-    private LinkedList<Task> tasks;
+    private ArrayList<Task> tasks;
     public Workflow() {
-        this.tasks = new LinkedList<>();
+        this.tasks = new ArrayList<>();
     }
 
-    public LinkedList<Task> getTasks() {
+    public ArrayList<Task> getTasks() {
         return tasks;
     }
 
-    public void setTasks(LinkedList<Task> tasks) {
+    public void setTasks(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
 }
