@@ -3,7 +3,6 @@ import classes.Workflow;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.LinkedList;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
