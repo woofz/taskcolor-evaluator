@@ -11,9 +11,7 @@ import java.util.TreeMap;
 
 public class Evaluator implements BaseEval {
 
-    public Evaluator() {
-
-    }
+    public Evaluator(){}
 
     @Override
     public TreeMap<Long, TaskColor> evaluate(int taskIndex, ArrayList<Task> tasks) {
@@ -21,10 +19,9 @@ public class Evaluator implements BaseEval {
         TreeMap<Long, TaskColor> treeMap = new TreeMap<>();
 
         //Check task
-
-        //if the task is the first task of the list ...
+        //If the task is the first task of the list ...
         if (taskIndex == 0){
-            // ... then set to COMPLETE
+            //... then set to COMPLETE
             treeMap.put(tasks.get(taskIndex).getTaskId(), TaskColor.GREEN);
             tasks.get(taskIndex).setState(TaskState.COMPLETE);
         } else {
@@ -48,45 +45,44 @@ public class Evaluator implements BaseEval {
                     tasks.get(taskIndex).setState(TaskState.COMPLETE);
                 }
 
-            // More than 1 previous task
+            // If there's more than one previous task ...
             } else if(taskIndex > 1 ){
                 List<Task> tasksSubList = tasks.subList(0, taskIndex);
                 Task parentTask = tasksSubList.get(tasksSubList.size()-1);
                 Task granParentTask = tasksSubList.get(tasksSubList.size()-2);
 
-                // If previous task state is COMPLETE
+                // ... if gran parent task state is COMPLETE ...
                 if(granParentTask.getState().equals(TaskState.COMPLETE)) {
                     if(parentTask.getState().equals(TaskState.COMPLETE)
                             || parentTask.getType().equals(TaskType.OPTIONAL)) {
                         treeMap.put(tasks.get(taskIndex).getTaskId(), TaskColor.GREEN);
                         tasks.get(taskIndex).setState(TaskState.COMPLETE);
                     }
-                    // else if Parent task is MANDATORY or PENDING/NOT_COMPLETE...
+                    // ... else if parent task is MANDATORY or PENDING/NOT_COMPLETE...
                     if(!parentTask.getState().equals(TaskState.COMPLETE)
                             && parentTask.getType().equals(TaskType.MANDATORY)) {
                         treeMap.put(tasks.get(taskIndex).getTaskId(), TaskColor.YELLOW);
                         tasks.get(taskIndex).setState(TaskState.PENDING);
                     }
                 }
-                // If Grand Parent is Mandatory and is not COMPLETE -> return Yellow
+                // ... if gran parent is MANDATORY and is not COMPLETE -> return Yellow
                 if(granParentTask.getType().equals(TaskType.MANDATORY) && !granParentTask.getState().equals(TaskState.COMPLETE)) {
                     treeMap.put(tasks.get(taskIndex).getTaskId(), TaskColor.YELLOW);
                     tasks.get(taskIndex).setState(TaskState.PENDING);
                 }
 
-                // If Grand Parent and Parent are optional -> return GREEN
+                // ... if gran parent and parent are optional ...
                 if((granParentTask.getType().equals(TaskType.OPTIONAL) &&
                         (parentTask.getType().equals(TaskType.OPTIONAL)
                                 || (parentTask.getType().equals(TaskType.MANDATORY))
                                 && parentTask.getState().equals(TaskState.COMPLETE)))) {
                     treeMap.put(tasks.get(taskIndex).getTaskId(), TaskColor.GREEN);
                     tasks.get(taskIndex).setState(TaskState.COMPLETE);
-                // Else
+                // ... else ...
                 } else {
                     treeMap.put(tasks.get(taskIndex).getTaskId(), TaskColor.YELLOW);
                     tasks.get(taskIndex).setState(TaskState.PENDING);
                 }
-
             }
         }
         //Return
