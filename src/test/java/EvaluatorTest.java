@@ -177,4 +177,27 @@ public class EvaluatorTest {
         // Then
         assertThat(workflow.lastEntry().getValue()).isEqualTo(TaskColor.YELLOW);
     }
+
+    @Test
+    public void givenFiveTasks_whenEvaluate_thenTreeMapIsNotNull(){
+
+        //Given
+        final Task task1 = new Task(TaskState.NOT_COMPLETE, TaskType.OPTIONAL, 1L);
+        final Task task2 = new Task(TaskState.NOT_COMPLETE, TaskType.OPTIONAL, 2L);
+        final Task task3 = new Task(TaskState.NOT_COMPLETE, TaskType.MANDATORY, 3L);
+        final Task task4 = new Task(TaskState.PENDING, TaskType.MANDATORY, 4L);
+        final Task task5 = new Task(TaskState.PENDING, TaskType.MANDATORY, 5L);
+
+        wf.getTasks().add(task1);
+        wf.getTasks().add(task2);
+        wf.getTasks().add(task3);
+        wf.getTasks().add(task4);
+        wf.getTasks().add(task5);
+
+        // When
+        TreeMap<Long, TaskColor> workflow = sut.evaluate(4, wf.getTasks());
+
+        // Then
+        assertThat(workflow).isNotNull();
+    }
 }
