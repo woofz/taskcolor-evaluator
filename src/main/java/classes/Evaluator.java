@@ -3,14 +3,14 @@ package classes;
 import enums.TaskColor;
 import enums.TaskState;
 import enums.TaskType;
-import interfaces.BaseSingleEval;
+import interfaces.BaseEval;
 
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-public class SingleEvaluator implements BaseSingleEval {
+public class Evaluator implements BaseEval {
 
-    public SingleEvaluator() {
+    public Evaluator() {
 
     }
 

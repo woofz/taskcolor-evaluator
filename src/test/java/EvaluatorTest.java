@@ -1,4 +1,4 @@
-import classes.SingleEvaluator;
+import classes.Evaluator;
 import classes.Task;
 import classes.Workflow;
 import enums.TaskColor;
@@ -10,13 +10,13 @@ import java.util.TreeMap;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class SingleEvaluatorTest {
-    final SingleEvaluator sut = new SingleEvaluator();
+public class EvaluatorTest {
+    final Evaluator sut = new Evaluator();
     final Workflow wf = new Workflow();
 
     @Test
     public void givenObject_whenCreateEvaluator_thenReturnEvaluator() {
-        SingleEvaluator singleEvaluator = new SingleEvaluator();
+        Evaluator singleEvaluator = new Evaluator();
         assertThat(singleEvaluator).isNotNull();
     }
 
