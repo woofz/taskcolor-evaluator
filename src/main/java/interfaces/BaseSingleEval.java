@@ -7,5 +7,5 @@ import java.util.ArrayList;
 import java.util.TreeMap;
 
 public interface BaseSingleEval {
-    TreeMap<Long, TaskColor> evaluate(Task currentNode, ArrayList<Task> previousTasks);
+    TreeMap<Long, TaskColor> evaluate(int taskIndex, ArrayList<Task> tasks);
 }
