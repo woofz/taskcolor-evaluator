@@ -1,8 +1,11 @@
 import classes.Task;
 import classes.Workflow;
+import enums.TaskState;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+
+import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -33,5 +36,13 @@ public class WorkflowClassTest {
         workflow.getTasks().add(task);
 
         assertThat(workflow.getTasks()).size().isEqualTo(1);
+    }
+
+    @Test
+    public void givenTask_whenSetTasks_thenTasksIsNotEmpty(){
+        ArrayList<Task> tasks = new ArrayList<>();
+        tasks.add(new Task(TaskState.COMPLETE,1l));
+        workflow.setTasks(tasks);
+        assertThat(workflow.getTasks().get(0).getTaskId()).isEqualTo(1L);
     }
 }
