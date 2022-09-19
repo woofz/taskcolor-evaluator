@@ -26,7 +26,7 @@ public class EvaluatorTest {
         wf.getTasks().add(new Task(TaskState.COMPLETE, 1L));
 
         // When
-        TreeMap<Long, TaskColor> newWorkFlow = sut.evaluate(1, wf.getTasks());
+        TreeMap<Long, TaskColor> newWorkFlow = sut.evaluate(0, wf.getTasks());
         // Then
         assertThat(newWorkFlow).isNotNull();
     }
