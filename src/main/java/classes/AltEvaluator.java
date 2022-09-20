@@ -12,7 +12,7 @@ public class AltEvaluator implements BaseEvalAlt {
     public AltEvaluator() { }
 
     /**
-     * Evaluates a Task giving him a Color
+     * Evaluates a Task giving it a Color
      * @param currentTask Task to evaluate
      * @param previousTasks Its previous tasks
      * @return TreeMap containing TaskId as Key and a TaskColor as value
