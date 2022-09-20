@@ -13,6 +13,13 @@ public class Evaluator implements BaseEval {
 
     public Evaluator(){}
 
+
+    /**
+     * Evaluate a workflow task and assign a color to it
+     * @param taskIndex the task index
+     * @param tasks the list of tasks
+     * @return
+     */
     @Override
     public TreeMap<Long, TaskColor> evaluate(int taskIndex, ArrayList<Task> tasks) {
         //Initialization
