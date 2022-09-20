@@ -57,4 +57,10 @@ public class Task {
     public void setTaskId(Long taskId) {
         this.taskId = taskId;
     }
+
+    public boolean isMandatory() { return this.type.equals(TaskType.MANDATORY) ? true : false; }
+
+    public boolean isComplete() { return this.state.equals(TaskState.COMPLETE) ? true : false; }
+
+    public boolean isOptional() { return this.type.equals(TaskType.OPTIONAL) ? true : false; }
 }
